@@ -3,27 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css" />
     <title>Weather App</title>
+    <link href="./output.css" rel="stylesheet">
+    <link rel="icon" href="./assets/Sun.svg">
 </head>
 <body>
-    <div class="app-wrap">
-        <header>
-            <input type="text" autocomplete="off" class="search-box"
-            placeholder="Search for a city..." />
-        </header>
-        <main>
-            <section class="location">
-                <div class="city">San Diego, CA</div>
-                <div class="date">Saturday November 7, 2020</div>
-            </section>
-            <div class="current">
-                <div class="temp">15<span>°c</span></div>
-                <div class="weather">Sunny</div>
-                <div class="hi-low">13°c / 16°c</div>
+
+    <main class="transition-all duration-1000 ease-linear background-light">
+        <nav class="title-bg grid grid-cols-5 grid-rows-1 mt-24 place-items-center hover:bg-red-900 transition-all duration-1000">
+            <h1 class="title col-start-3">
+                Forecastify
+            </h1>
+            <button class="col-start-5" id="theme-button">
+                <img src="./assets/Moon.svg" width="72 rem">
+            </button>
+        </nav>
+
+        <div class="flex justify-center items-center pt-4 flex-col text-center">
+            <div class="p-4 h-[24rem] w-[48rem] bg-white flex flex-col justify-center items-center rounded-2xl">
+                <input id="search-box" type="text" autocomplete="off" placeholder="🔎 Search for a city..." class="text-input hover:px-10 transition-all duration-300 ease-in-out" />
+                
+                <section class="font-sans font-bold p-4 m-4 font-thing space-y-2 h-max text-2xl background-light rounded-3xl text-white justify-center hover:scale-105 transition-all ease-in-out duration-1000">
+                    <div id="city">San Diego, CA</div>
+                    <div id="date" class="overline decoration-yellow-300">Saturday November 7, 2020</div>
+                </section>
+
+                <div class="w-[24rem] h-max background-dark text-slate-200 p-2 rounded-3xl font-semibold space-y-2 text-3xl hover:scale-105 transition-all ease-in-out duration-1000">
+                    <div id="temp" class="underline underline-offset-8 decoration-yellow-300">15<span>°c</span></div>
+                    <div id="weather">Sunny</div>
+                    <div id="hi-low" class="overline decoration-yellow-300">13°c / 16°c</div>
+                </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
     <script src="app.js"></script>
+    <script>
+        const background = document.getElementsByTagName('main')[0];
+        let count = 0
+
+        const themeButton = document.getElementById('theme-button');
+        const themeButtonImg = document.getElementById('theme-button').firstElementChild;
+        themeButton.addEventListener('click', () => { 
+            count++
+            if (count % 2 === 0) {
+                themeButtonImg.setAttribute('src', './assets/Moon.svg')
+                background.classList.add('background-light')
+                background.classList.remove('background-dark')
+            } else {
+                themeButtonImg.setAttribute('src', './assets/Sun.svg')
+                background.classList.add('background-dark')
+                background.classList.remove('background-light')
+            }
+        })    
+    </script>
 </body>
 </html>
