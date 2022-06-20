@@ -3,7 +3,7 @@ const api = {
     baseurl: "https://api.openweathermap.org/data/2.5/"
 }
 
-const searchbox  = document.querySelector('.search-box');
+const searchbox  = document.getElementById("search-box");
 searchbox.addEventListener('keypress', setQuery);
 
 function setQuery(evt) {
@@ -22,20 +22,20 @@ function getResults (query) {
 
 
 function displayResults (weather) {
-    let city = document.querySelector('.location .city');
+    let city = document.getElementById('city');
     city.innerText = `${weather.name}, ${weather.sys.country}`;
 
 
     let now = new Date();
-    let date = document.querySelector('.location .date');
+    let date = document.getElementById("date")
     date.innerText = dateBuilder(now);
-    let temp = document.querySelector('.current .temp');
+    let temp = document.getElementById("temp");
     temp.innerHTML = `${Math.round(weather.main.temp)}<span>°c</span>`;
 
-    let weather_el = document.querySelector('.current .weather');
+    let weather_el = document.getElementById("weather")
     weather_el.innerText = weather.weather[0].main;
 
-    let hilow = document.querySelector('.hi-low');
+    let hilow = document.getElementById("hi-low");
     hilow.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
 }
 
